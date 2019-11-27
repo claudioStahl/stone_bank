@@ -8,6 +8,9 @@ defmodule StoneBank.Accounts do
 
   alias StoneBank.Accounts.Account
 
+  @callback create_account(String.t(), String.t()) ::
+              {:ok, %Account{}} | {:error, %Ecto.Changeset{}}
+
   @doc """
   Creates a account.
 

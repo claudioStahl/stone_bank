@@ -8,6 +8,9 @@
 use Mix.Config
 
 config :stone_bank,
+  accounts_module: StoneBank.Accounts
+
+config :stone_bank,
   ecto_repos: [StoneBank.Repo],
   generators: [binary_id: true]
 

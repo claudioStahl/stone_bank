@@ -1,5 +1,8 @@
 use Mix.Config
 
+config :stone_bank,
+  accounts_module: StoneBank.AccountsMock
+
 # Configure your database
 config :stone_bank, StoneBank.Repo,
   username: "postgres",

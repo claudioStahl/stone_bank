@@ -5,7 +5,9 @@ defmodule StoneBankWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", StoneBankWeb do
+  scope "/api/v1", StoneBankWeb do
     pipe_through :api
+
+    resources "/accounts", AccountController, only: [:create]
   end
 end

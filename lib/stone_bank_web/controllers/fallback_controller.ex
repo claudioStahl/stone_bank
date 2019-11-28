@@ -19,4 +19,11 @@ defmodule StoneBankWeb.FallbackController do
     |> put_view(StoneBankWeb.ErrorView)
     |> render(:"404")
   end
+
+  def call(conn, {:unauthorized, message}) do
+    conn
+    |> put_status(:unauthorized)
+    |> put_view(StoneBankWeb.ErrorView)
+    |> render("message.json", message: message)
+  end
 end

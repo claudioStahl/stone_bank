@@ -9,5 +9,6 @@ defmodule StoneBankWeb.Router do
     pipe_through :api
 
     resources "/accounts", AccountController, only: [:create]
+    resources "/auth", AuthController, only: [:create]
   end
 end

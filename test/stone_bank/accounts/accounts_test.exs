@@ -1,4 +1,4 @@
-defmodule StoneBank.AccountsTest do
+defmodule StoneBank.Accounts.AccountsTest do
   use StoneBank.DataCase
 
   alias StoneBank.Accounts

@@ -24,6 +24,10 @@ defmodule StoneBank.Accounts.Account do
     |> validate_required([:name, :password_hash])
   end
 
+  def check_password(account, password) do
+    Argon2.check_pass(account, password)
+  end
+
   defp put_password_hash(changeset) do
     case changeset do
       %Ecto.Changeset{changes: %{password: pass}} ->

@@ -1,16 +1,13 @@
-defmodule StoneBank.AccountTest do
+defmodule StoneBank.Accounts.AccountTest do
   use StoneBank.DataCase
+
+  import StoneBank.Fixtures.Accounts
 
   alias StoneBank.Accounts.Account
 
-  describe "changeset/2" do
-    @valid_attrs %{name: "José Augusto", password: "123456", total: 1}
-    @persisted_attrs %{
-      name: "José Henrique",
-      password_hash: "4$KCvsQUv0PzdMe27Cr0c4UA$wghRRktd2cUAGQS+rUZ3iuac8w2n4ZgykL2VUqk5VTo",
-      total: 2
-    }
+  @valid_attrs %{name: "José Augusto", password: "654321", total: 1}
 
+  describe "changeset/2" do
     test "with new account and valid data returns valid changeset" do
       assert %Ecto.Changeset{valid?: true, changes: changes} =
                Account.changeset(%Account{}, @valid_attrs)
@@ -21,12 +18,12 @@ defmodule StoneBank.AccountTest do
     end
 
     test "with persisted account and empty data returns valid changeset" do
-      account = struct(%Account{}, @persisted_attrs)
+      account = fixture(:account, insert: false)
       assert %Ecto.Changeset{valid?: true, changes: %{}} = Account.changeset(account, %{})
     end
 
     test "with persisted account and valid data returns valid changeset" do
-      account = struct(%Account{}, @persisted_attrs)
+      account = fixture(:account, insert: false)
 
       assert %Ecto.Changeset{valid?: true, changes: changes} =
                Account.changeset(account, @valid_attrs)
@@ -74,6 +71,18 @@ defmodule StoneBank.AccountTest do
                     ]}
                ]
              } = Account.changeset(%Account{}, attrs)
+    end
+  end
+
+  describe "check_password/2" do
+    test "returns valid response" do
+      account = fixture(:account, insert: false)
+      assert {:ok, account} = Account.check_password(account, "123456")
+    end
+
+    test "returns error response" do
+      account = fixture(:account, insert: false)
+      assert {:error, "invalid password"} = Account.check_password(account, "123")
     end
   end
 end

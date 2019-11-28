@@ -1,6 +1,8 @@
 defmodule StoneBank.Accounts.AccountsTest do
   use StoneBank.DataCase
 
+  import StoneBank.Fixtures.Accounts
+
   alias StoneBank.Accounts
   alias StoneBank.Accounts.Account
 
@@ -20,6 +22,31 @@ defmodule StoneBank.Accounts.AccountsTest do
       password = ""
 
       assert {:error, %Ecto.Changeset{}} = Accounts.create_account(name, password)
+    end
+  end
+
+  describe "get_account_by_number_and_password/2" do
+    test "returns valid response" do
+      account = fixture(:account, insert: true)
+
+      assert {:ok, found_account} =
+               Accounts.get_account_by_number_and_password(account.number, account.password)
+
+      assert found_account.id == account.id
+    end
+
+    test "with invalid number returns error response" do
+      account = fixture(:account, insert: true)
+
+      assert {:error, :not_found} =
+               Accounts.get_account_by_number_and_password(99, account.password)
+    end
+
+    test "with invalid password returns error response" do
+      account = fixture(:account, insert: true)
+
+      assert {:error, :not_found} =
+               Accounts.get_account_by_number_and_password(account.number, "123")
     end
   end
 end

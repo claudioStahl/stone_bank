@@ -9,6 +9,7 @@ use Mix.Config
 
 config :stone_bank,
   user_salt: "J4gZROHg7ryJgCJAtMqR6GwvmIuUDoICmB1q+znzcu2alExmDIuI9VOjF7EZDz8J",
+  time_module: StoneBank.Time,
   accounts_module: StoneBank.Accounts
 
 config :stone_bank,

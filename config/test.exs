@@ -1,6 +1,7 @@
 use Mix.Config
 
 config :stone_bank,
+  time_module: StoneBank.TimeMock,
   accounts_module: StoneBank.AccountsMock
 
 # Configure your database

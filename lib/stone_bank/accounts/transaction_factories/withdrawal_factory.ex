@@ -5,6 +5,11 @@ defmodule StoneBank.Accounts.TransactionFactories.WithdrawalFactory do
   alias StoneBank.Accounts.Account
   alias StoneBank.Accounts.Transaction
 
+  @callback call(String.t(), integer) ::
+              {:ok, %Transaction{}}
+              | {:error, %Ecto.Changeset{}}
+              | {:error, :unavailable_limit}
+
   @doc """
   Creates a transaction to withdraw.
 

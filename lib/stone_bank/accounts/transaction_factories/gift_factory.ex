@@ -2,6 +2,9 @@ defmodule StoneBank.Accounts.TransactionFactories.GiftFactory do
   alias StoneBank.Repo
   alias StoneBank.Accounts.Transaction
 
+  @callback call(String.t(), integer) ::
+              {:ok, %Transaction{}} | {:error, %Ecto.Changeset{}}
+
   @doc """
   Creates a gift transaction.
 

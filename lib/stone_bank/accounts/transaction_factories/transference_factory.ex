@@ -5,6 +5,12 @@ defmodule StoneBank.Accounts.TransactionFactories.TransferenceFactory do
   alias StoneBank.Accounts.Account
   alias StoneBank.Accounts.Transaction
 
+  @callback call(String.t(), integer, integer) ::
+              {:ok, %Transaction{}}
+              | {:error, %Ecto.Changeset{}}
+              | {:error, :destination_account_not_found}
+              | {:error, :unavailable_limit}
+
   @doc """
   Creates a transference transaction with destination account.
 

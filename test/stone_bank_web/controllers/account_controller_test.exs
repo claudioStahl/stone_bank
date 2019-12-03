@@ -19,7 +19,7 @@ defmodule StoneBankWeb.AccountControllerTest do
 
   describe "create account" do
     test "renders account when data is valid", %{conn: conn} do
-      account = fixture(:account, insert: false)
+      account = fixture(:account)
       expect(AccountsMock, :create_account, fn _, _ -> {:ok, account} end)
       conn = post(conn, Routes.account_path(conn, :create), @create_attrs)
       %Account{id: id, name: name, number: number, total: total} = account

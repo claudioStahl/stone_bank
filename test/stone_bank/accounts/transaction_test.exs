@@ -32,12 +32,12 @@ defmodule StoneBank.Accounts.TransactionTest do
     end
 
     test "with persisted transaction and empty data returns valid changeset" do
-      transaction = fixture(:transaction, insert: false)
+      transaction = fixture(:transaction)
       assert %Ecto.Changeset{valid?: true, changes: %{}} = Transaction.changeset(transaction, %{})
     end
 
     test "with persisted transaction and valid data returns valid changeset" do
-      transaction = fixture(:transaction, insert: false)
+      transaction = fixture(:transaction)
 
       assert %Ecto.Changeset{valid?: true, changes: changes} =
                Transaction.changeset(transaction, @valid_attrs)
@@ -139,7 +139,7 @@ defmodule StoneBank.Accounts.TransactionTest do
     test "with transaction" do
       expect(TimeMock, :naive_date_time_utc_now, fn -> ~N[2019-12-03 13:10:01] end)
 
-      transaction = fixture(:transaction, insert: false)
+      transaction = fixture(:transaction)
 
       assert %Ecto.Changeset{valid?: true, changes: changes} =
                Transaction.mark_processed(transaction)
@@ -163,7 +163,7 @@ defmodule StoneBank.Accounts.TransactionTest do
     test "with transaction" do
       expect(TimeMock, :naive_date_time_utc_now, fn -> ~N[2019-12-03 13:10:01] end)
 
-      transaction = fixture(:transaction, insert: false)
+      transaction = fixture(:transaction)
 
       assert %Ecto.Changeset{valid?: true, changes: changes} =
                Transaction.add_error(transaction, "unavailable_limit")

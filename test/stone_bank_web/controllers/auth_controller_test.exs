@@ -17,7 +17,7 @@ defmodule StoneBankWeb.AuthControllerTest do
 
   describe "login" do
     test "renders token when data is valid", %{conn: conn} do
-      account = fixture(:account, insert: false)
+      account = fixture(:account)
       expect(AccountsMock, :get_account_by_number_and_password, fn _, _ -> {:ok, account} end)
       conn = post(conn, Routes.auth_path(conn, :create), @attrs)
       assert %{"token" => token} = json_response(conn, 200)["data"]

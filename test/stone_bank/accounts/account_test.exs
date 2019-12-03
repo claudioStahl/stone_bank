@@ -18,12 +18,12 @@ defmodule StoneBank.Accounts.AccountTest do
     end
 
     test "with persisted account and empty data returns valid changeset" do
-      account = fixture(:account, insert: false)
+      account = fixture(:account)
       assert %Ecto.Changeset{valid?: true, changes: %{}} = Account.changeset(account, %{})
     end
 
     test "with persisted account and valid data returns valid changeset" do
-      account = fixture(:account, insert: false)
+      account = fixture(:account)
 
       assert %Ecto.Changeset{valid?: true, changes: changes} =
                Account.changeset(account, @valid_attrs)
@@ -76,12 +76,12 @@ defmodule StoneBank.Accounts.AccountTest do
 
   describe "check_password/2" do
     test "returns valid response" do
-      account = fixture(:account, insert: false)
+      account = fixture(:account)
       assert {:ok, account} = Account.check_password(account, "123456")
     end
 
     test "returns error response" do
-      account = fixture(:account, insert: false)
+      account = fixture(:account)
       assert {:error, "invalid password"} = Account.check_password(account, "123")
     end
   end

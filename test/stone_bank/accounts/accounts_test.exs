@@ -27,7 +27,7 @@ defmodule StoneBank.Accounts.AccountsTest do
 
   describe "get_account_by_number_and_password/2" do
     test "returns valid response" do
-      account = fixture(:account, insert: true)
+      account = fixture!(:account)
 
       assert {:ok, found_account} =
                Accounts.get_account_by_number_and_password(account.number, account.password)
@@ -36,14 +36,14 @@ defmodule StoneBank.Accounts.AccountsTest do
     end
 
     test "with invalid number returns error response" do
-      account = fixture(:account, insert: true)
+      account = fixture!(:account)
 
       assert {:error, :not_found} =
                Accounts.get_account_by_number_and_password(99, account.password)
     end
 
     test "with invalid password returns error response" do
-      account = fixture(:account, insert: true)
+      account = fixture!(:account)
 
       assert {:error, :not_found} =
                Accounts.get_account_by_number_and_password(account.number, "123")

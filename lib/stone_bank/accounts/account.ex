@@ -18,10 +18,7 @@ defmodule StoneBank.Accounts.Account do
   def changeset(account, attrs) do
     account
     |> cast(attrs, [:name, :total, :password])
-    |> validate_length(:password, min: 6)
-    |> validate_number(:total, greater_than_or_equal_to: 0)
-    |> put_password_hash()
-    |> validate_required([:name, :password_hash])
+    |> validate()
   end
 
   def check_password(account, password) do
@@ -37,6 +34,21 @@ defmodule StoneBank.Accounts.Account do
   end
 
   def apply_inbound(data, value) do
+    total = change(data) |> get_field(:total)
+
+    data
+    |> change(%{total: total + value})
+    |> validate()
+  end
+
+  def apply_outbound(data, value) do
+    total = change(data) |> get_field(:total)
+
+    data
+    |> change(%{total: total - value})
+    |> validate()
+  end
+
   defp put_password_hash(changeset) do
     case changeset do
       %Ecto.Changeset{changes: %{password: pass}} ->
@@ -45,5 +57,13 @@ defmodule StoneBank.Accounts.Account do
       _ ->
         changeset
     end
+  end
+
+  defp validate(changeset) do
+    changeset
+    |> validate_length(:password, min: 6)
+    |> validate_number(:total, greater_than_or_equal_to: 0)
+    |> put_password_hash()
+    |> validate_required([:name, :password_hash])
   end
 end

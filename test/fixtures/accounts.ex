@@ -8,7 +8,7 @@ defmodule StoneBank.Fixtures.Accounts do
 
   def fixture(:account, params) do
     %Account{
-      id: Keyword.get(params, :id, nil),
+      id: Keyword.get(params, :id, UUID.generate()),
       name: Keyword.get(params, :name, "Brian Cardarella"),
       number: Keyword.get(params, :number, nil),
       password: Keyword.get(params, :password, @password),
@@ -19,7 +19,7 @@ defmodule StoneBank.Fixtures.Accounts do
 
   def fixture(:transaction, params) do
     %Transaction{
-      id: Keyword.get(params, :id, nil),
+      id: Keyword.get(params, :id, UUID.generate()),
       error: Keyword.get(params, :error, nil),
       group_id: Keyword.get(params, :group_id, UUID.generate()),
       action: Keyword.get(params, :action, "withdrawal"),

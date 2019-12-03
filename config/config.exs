@@ -8,9 +8,14 @@
 use Mix.Config
 
 config :stone_bank,
+  token_max_age: 3_600,
   user_salt: "J4gZROHg7ryJgCJAtMqR6GwvmIuUDoICmB1q+znzcu2alExmDIuI9VOjF7EZDz8J",
+  gift_value: 100_000,
   time_module: StoneBank.Time,
-  accounts_module: StoneBank.Accounts
+  accounts_module: StoneBank.Accounts,
+  gift_transaction_factory: StoneBank.Accounts.TransactionFactories.GiftFactory,
+  transference_transaction_factory: StoneBank.Accounts.TransactionFactories.TransferenceFactory,
+  withdrawal_transaction_factory: StoneBank.Accounts.TransactionFactories.WithdrawalFactory
 
 config :stone_bank,
   ecto_repos: [StoneBank.Repo],

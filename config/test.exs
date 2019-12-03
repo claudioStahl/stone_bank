@@ -2,7 +2,11 @@ use Mix.Config
 
 config :stone_bank,
   time_module: StoneBank.TimeMock,
-  accounts_module: StoneBank.AccountsMock
+  accounts_module: StoneBank.AccountsMock,
+  gift_transaction_factory: StoneBank.Accounts.TransactionFactories.GiftFactoryMock,
+  transference_transaction_factory:
+    StoneBank.Accounts.TransactionFactories.TransferenceFactoryMock,
+  withdrawal_transaction_factory: StoneBank.Accounts.TransactionFactories.WithdrawalFactoryMock
 
 # Configure your database
 config :stone_bank, StoneBank.Repo,

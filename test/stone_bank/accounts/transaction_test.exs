@@ -152,8 +152,6 @@ defmodule StoneBank.Accounts.TransactionTest do
 
   describe "add_error/2" do
     test "with changeset" do
-      expect(TimeMock, :naive_date_time_utc_now, fn -> ~N[2019-12-03 13:10:01] end)
-
       changeset = Transaction.changeset(%Transaction{}, @valid_attrs)
 
       assert %Ecto.Changeset{valid?: true, changes: changes} =
@@ -163,8 +161,6 @@ defmodule StoneBank.Accounts.TransactionTest do
     end
 
     test "with transaction" do
-      expect(TimeMock, :naive_date_time_utc_now, fn -> ~N[2019-12-03 13:10:01] end)
-
       transaction = fixture(:transaction)
 
       assert %Ecto.Changeset{valid?: true, changes: changes} =

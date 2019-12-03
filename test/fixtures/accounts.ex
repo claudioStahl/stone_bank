@@ -15,8 +15,6 @@ defmodule StoneBank.Fixtures.Accounts do
     }
   end
 
-  def fixture(:account), do: fixture(:account, [])
-
   def fixture(:transaction, params) do
     %Transaction{
       error: Keyword.get(params, :error, nil),
@@ -29,14 +27,13 @@ defmodule StoneBank.Fixtures.Accounts do
     }
   end
 
+  def fixture(:account), do: fixture(:account, [])
   def fixture(:transaction), do: fixture(:transaction, [])
 
   def fixture!(:account, params) do
     fixture(:account, params)
     |> Repo.insert!()
   end
-
-  def fixture!(:account), do: fixture!(:account, [])
 
   def fixture!(:transaction, params) do
     params = Keyword.put_new(params, :account_id, fixture!(:account).id)
@@ -45,5 +42,6 @@ defmodule StoneBank.Fixtures.Accounts do
     |> Repo.insert!()
   end
 
+  def fixture!(:account), do: fixture!(:account, [])
   def fixture!(:transaction), do: fixture!(:transaction, [])
 end

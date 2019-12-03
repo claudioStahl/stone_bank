@@ -62,9 +62,13 @@ defmodule StoneBank.Accounts.TransactionQueryTest do
       %Transaction{id: id_two} = fixture!(:transaction, group_id: nil, kind: "outbound")
       %Transaction{id: id_three} = fixture!(:transaction, group_id: nil, kind: "inbound")
 
-      assert [%Transaction{id: ^id_one}, %Transaction{id: ^id_two}, %Transaction{id: ^id_three}] =
-               TransactionQuery.where_unique_by_group(Transaction)
-               |> Repo.all()
+      result =
+        TransactionQuery.where_unique_by_group(Transaction)
+        |> Repo.all()
+
+      Enum.each([id_one, id_two, id_three], fn id ->
+        assert Enum.find(result, fn t -> t.id == id end)
+      end)
     end
   end
 
@@ -79,9 +83,13 @@ defmodule StoneBank.Accounts.TransactionQueryTest do
       fixture!(:transaction, processed_at: ~N[2019-12-02 13:10:01])
       fixture!(:transaction, processed_at: ~N[2019-12-07 13:10:01])
 
-      assert [%Transaction{id: ^id_one}, %Transaction{id: ^id_two}, %Transaction{id: ^id_three}] =
-               TransactionQuery.where_processed_at_range(Transaction, start, finish)
-               |> Repo.all()
+      result =
+        TransactionQuery.where_processed_at_range(Transaction, start, finish)
+        |> Repo.all()
+
+      Enum.each([id_one, id_two, id_three], fn id ->
+        assert Enum.find(result, fn t -> t.id == id end)
+      end)
     end
   end
 end

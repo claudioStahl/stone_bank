@@ -85,4 +85,16 @@ defmodule StoneBank.Accounts.AccountTest do
       assert {:error, "invalid password"} = Account.check_password(account, "123")
     end
   end
+
+  describe "check_available_limit/2" do
+    test "returns valid response" do
+      account = fixture(:account, total: 3)
+      assert {:ok, account} = Account.check_available_limit(account, 2)
+    end
+
+    test "returns error response" do
+      account = fixture(:account, total: 1)
+      assert {:error, :unavailable_limit} = Account.check_available_limit(account, 2)
+    end
+  end
 end

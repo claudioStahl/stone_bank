@@ -28,6 +28,15 @@ defmodule StoneBank.Accounts.Account do
     Argon2.check_pass(account, password)
   end
 
+  def check_available_limit(account, value) do
+    if account.total >= value do
+      {:ok, account}
+    else
+      {:error, :unavailable_limit}
+    end
+  end
+
+  def apply_inbound(data, value) do
   defp put_password_hash(changeset) do
     case changeset do
       %Ecto.Changeset{changes: %{password: pass}} ->

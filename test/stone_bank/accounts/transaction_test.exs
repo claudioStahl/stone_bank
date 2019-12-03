@@ -17,6 +17,8 @@ defmodule StoneBank.Accounts.TransactionTest do
     account_id: "3c87e7f7-90ff-417b-ba33-eb895ac05080"
   }
 
+  setup :verify_on_exit!
+
   describe "changeset/2" do
     test "with new transaction and valid data returns valid changeset" do
       assert %Ecto.Changeset{valid?: true, changes: changes} =

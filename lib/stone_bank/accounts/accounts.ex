@@ -4,11 +4,14 @@ defmodule StoneBank.Accounts do
   """
 
   import Ecto.Query, warn: false
-  alias StoneBank.Repo
 
+  alias StoneBank.Repo
   alias StoneBank.Accounts.Account
+  alias StoneBank.Accounts.AccountCallbacks
 
   @callback create_account(String.t(), String.t()) ::
+              {:ok, %Account{}} | {:error, %Ecto.Changeset{}}
+  @callback create_account(String.t(), String.t(), AccountCallbacks.t()) ::
               {:ok, %Account{}} | {:error, %Ecto.Changeset{}}
   @callback get_account_by_number_and_password(integer, String.t()) ::
               {:ok, %Account{}} | {:error, :not_found}
@@ -25,10 +28,18 @@ defmodule StoneBank.Accounts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_account(name, password) do
-    with changeset <- Account.changeset(%Account{}, %{name: name, password: password}),
-         {:ok, account} <- Repo.insert(changeset) do
-      {:ok, Repo.get!(Account, account.id)}
+  def create_account(name, password, account_callbacks \\ AccountCallbacks) do
+    changeset = Account.changeset(%Account{}, %{name: name, password: password})
+
+    if changeset.valid? do
+      Repo.transaction(fn ->
+        account = Repo.insert!(changeset)
+        account = Repo.get!(Account, account.id)
+        account_callbacks.after_insert(account)
+        account
+      end)
+    else
+      {:error, changeset}
     end
   end
 

@@ -1,4 +1,5 @@
 defmodule StoneBank.Fixtures.Accounts do
+  alias Ecto.UUID
   alias StoneBank.Repo
   alias StoneBank.Accounts.Account
   alias StoneBank.Accounts.Transaction
@@ -7,6 +8,7 @@ defmodule StoneBank.Fixtures.Accounts do
 
   def fixture(:account, params) do
     %Account{
+      id: Keyword.get(params, :id, nil),
       name: Keyword.get(params, :name, "Brian Cardarella"),
       number: Keyword.get(params, :number, nil),
       password: Keyword.get(params, :password, @password),
@@ -17,13 +19,14 @@ defmodule StoneBank.Fixtures.Accounts do
 
   def fixture(:transaction, params) do
     %Transaction{
+      id: Keyword.get(params, :id, nil),
       error: Keyword.get(params, :error, nil),
-      group_id: Keyword.get(params, :group_id, "4642f242-ffad-4f45-a03b-2950d7f91bf4"),
+      group_id: Keyword.get(params, :group_id, UUID.generate()),
       action: Keyword.get(params, :action, "withdrawal"),
       kind: Keyword.get(params, :kind, "inbound"),
       processed_at: Keyword.get(params, :processed_at, ~N[2019-11-28 12:45:17]),
       value: Keyword.get(params, :value, 10_000),
-      account_id: Keyword.get(params, :account_id, "4ed4970d-3d87-45f6-8269-fc764c35d8ac")
+      account_id: Keyword.get(params, :account_id, UUID.generate())
     }
   end
 

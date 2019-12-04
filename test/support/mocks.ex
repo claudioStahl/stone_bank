@@ -2,6 +2,10 @@ Mox.defmock(StoneBank.TimeMock, for: StoneBank.Time)
 Mox.defmock(StoneBank.AccountsMock, for: StoneBank.Accounts)
 Mox.defmock(StoneBank.Accounts.AccountCallbacksMock, for: StoneBank.Accounts.AccountCallbacks)
 
+Mox.defmock(StoneBank.Accounts.TransactionNotificators.NotificatorMock,
+  for: StoneBank.Accounts.TransactionNotificators.Behaviour
+)
+
 Mox.defmock(StoneBank.Accounts.TransactionFactories.GiftFactoryMock,
   for: StoneBank.Accounts.TransactionFactories.GiftFactory
 )

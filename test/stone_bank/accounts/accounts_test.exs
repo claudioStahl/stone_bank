@@ -17,7 +17,9 @@ defmodule StoneBank.Accounts.AccountsTest do
       name = "some name"
       password = "123456"
 
-      assert {:ok, %Account{} = account} = Accounts.create_account(name, password, AccountCallbacksMock)
+      assert {:ok, %Account{} = account} =
+               Accounts.create_account(name, password, AccountCallbacksMock)
+
       assert account.name == name
       assert Argon2.verify_pass(password, account.password_hash)
       assert account.total == 0

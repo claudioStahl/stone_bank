@@ -1,6 +1,10 @@
 use Mix.Config
 
 config :stone_bank,
+  children: [
+    StoneBank.Repo,
+    StoneBankWeb.Endpoint
+  ],
   time_module: StoneBank.TimeMock,
   accounts_module: StoneBank.AccountsMock,
   gift_transaction_factory: StoneBank.Accounts.TransactionFactories.GiftFactoryMock,

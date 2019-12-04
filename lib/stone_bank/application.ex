@@ -5,21 +5,13 @@ defmodule StoneBank.Application do
 
   use Application
 
-  def start(_type, _args) do
-    # List all child processes to be supervised
-    children = [
-      # Start the Ecto repository
-      StoneBank.Repo,
-      # Start the endpoint when the application starts
-      StoneBankWeb.Endpoint
-      # Starts a worker by calling: StoneBank.Worker.start_link(arg)
-      # {StoneBank.Worker, arg},
-    ]
+  @children Application.get_env(:stone_bank, :children)
 
+  def start(_type, _args) do
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: StoneBank.Supervisor]
-    Supervisor.start_link(children, opts)
+    Supervisor.start_link(@children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration

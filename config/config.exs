@@ -8,6 +8,11 @@
 use Mix.Config
 
 config :stone_bank,
+  children: [
+    StoneBank.Repo,
+    StoneBankWeb.Endpoint,
+    StoneBank.Accounts.TransactionServer
+  ],
   token_max_age: 3_600,
   user_salt: "J4gZROHg7ryJgCJAtMqR6GwvmIuUDoICmB1q+znzcu2alExmDIuI9VOjF7EZDz8J",
   gift_value: 100_000,

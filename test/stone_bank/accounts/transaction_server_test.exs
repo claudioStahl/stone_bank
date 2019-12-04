@@ -1,5 +1,5 @@
 defmodule StoneBank.Accounts.TransactionServerTest do
-  use StoneBank.DataCase
+  use StoneBank.DataCase, async: true
 
   import Mox
   import StoneBank.GenServerTools

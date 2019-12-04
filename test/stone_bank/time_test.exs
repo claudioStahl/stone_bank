@@ -1,5 +1,5 @@
 defmodule StoneBank.TimeTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   describe "utc_now" do
     test "returns valid response" do

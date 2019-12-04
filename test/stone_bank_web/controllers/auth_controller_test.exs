@@ -1,5 +1,5 @@
 defmodule StoneBankWeb.AuthControllerTest do
-  use StoneBankWeb.ConnCase
+  use StoneBankWeb.ConnCase, async: true
 
   import Mox
   import StoneBank.Fixtures.Accounts

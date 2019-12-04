@@ -1,5 +1,5 @@
 defmodule StoneBank.Accounts.TransactionFactories.WithdrawalFactoryTest do
-  use StoneBank.DataCase
+  use StoneBank.DataCase, async: true
 
   import StoneBank.Fixtures.Accounts
 

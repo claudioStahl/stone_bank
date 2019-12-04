@@ -1,5 +1,5 @@
 defmodule StoneBank.ChangesetHelperTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias StoneBank.ChangesetHelper
 

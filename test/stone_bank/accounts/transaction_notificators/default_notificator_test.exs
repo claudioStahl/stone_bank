@@ -1,5 +1,5 @@
 defmodule StoneBank.Accounts.TransactionNotificators.DefaultNotificatorTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   import StoneBank.Fixtures.Accounts
   import ExUnit.CaptureLog

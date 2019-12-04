@@ -1,5 +1,5 @@
 defmodule StoneBank.Accounts.TransactionProcessors.GiftProcessorTest do
-  use StoneBank.DataCase
+  use StoneBank.DataCase, async: true
 
   import Mox
   import StoneBank.Fixtures.Accounts

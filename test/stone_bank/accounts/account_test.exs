@@ -1,5 +1,5 @@
 defmodule StoneBank.Accounts.AccountTest do
-  use StoneBank.DataCase
+  use StoneBank.DataCase, async: true
 
   import StoneBank.Fixtures.Accounts
 

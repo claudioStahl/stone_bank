@@ -6,7 +6,17 @@ config :stone_bank,
   gift_transaction_factory: StoneBank.Accounts.TransactionFactories.GiftFactoryMock,
   transference_transaction_factory:
     StoneBank.Accounts.TransactionFactories.TransferenceFactoryMock,
-  withdrawal_transaction_factory: StoneBank.Accounts.TransactionFactories.WithdrawalFactoryMock
+  withdrawal_transaction_factory: StoneBank.Accounts.TransactionFactories.WithdrawalFactoryMock,
+  transaction_processors: %{
+    "gift" => StoneBank.Accounts.TransactionProcessors.GiftProcessorMock,
+    "withdrawal" => StoneBank.Accounts.TransactionProcessors.WithdrawalProcessorMock,
+    "transference" => StoneBank.Accounts.TransactionProcessors.TransferenceProcessorMock
+  },
+  transaction_notificators: %{
+    "gift" => StoneBank.Accounts.TransactionNotificators.GiftNotificatorMock,
+    "withdrawal" => StoneBank.Accounts.TransactionNotificators.WithdrawalNotificatorMock,
+    "transference" => StoneBank.Accounts.TransactionNotificators.TransferenceNotificatorMock
+  }
 
 # Configure your database
 config :stone_bank, StoneBank.Repo,

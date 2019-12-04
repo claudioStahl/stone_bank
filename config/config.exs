@@ -15,7 +15,17 @@ config :stone_bank,
   accounts_module: StoneBank.Accounts,
   gift_transaction_factory: StoneBank.Accounts.TransactionFactories.GiftFactory,
   transference_transaction_factory: StoneBank.Accounts.TransactionFactories.TransferenceFactory,
-  withdrawal_transaction_factory: StoneBank.Accounts.TransactionFactories.WithdrawalFactory
+  withdrawal_transaction_factory: StoneBank.Accounts.TransactionFactories.WithdrawalFactory,
+  transaction_processors: %{
+    "gift" => StoneBank.Accounts.TransactionProcessors.GiftProcessor,
+    "withdrawal" => StoneBank.Accounts.TransactionProcessors.WithdrawalProcessor,
+    "transference" => StoneBank.Accounts.TransactionProcessors.TransferenceProcessor
+  },
+  transaction_notificators: %{
+    "gift" => StoneBank.Accounts.TransactionNotificators.DefaultNotificator,
+    "withdrawal" => StoneBank.Accounts.TransactionNotificators.DefaultNotificator,
+    "transference" => StoneBank.Accounts.TransactionNotificators.DefaultNotificator
+  }
 
 config :stone_bank,
   ecto_repos: [StoneBank.Repo],

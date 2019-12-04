@@ -5,8 +5,19 @@ defmodule StoneBank.Accounts.AccountsTest do
   import StoneBank.Fixtures.Accounts
 
   alias StoneBank.Accounts
-  alias StoneBank.Accounts.Account
-  alias StoneBank.Accounts.AccountCallbacksMock
+  alias StoneBank.Accounts.{Account, Transaction, AccountCallbacksMock}
+
+  alias StoneBank.Accounts.TransactionProcessors.{
+    GiftProcessorMock,
+    WithdrawalProcessorMock,
+    TransferenceProcessorMock
+  }
+
+  alias StoneBank.Accounts.TransactionNotificators.{
+    GiftNotificatorMock,
+    WithdrawalNotificatorMock,
+    TransferenceNotificatorMock
+  }
 
   setup :verify_on_exit!
 
@@ -55,6 +66,59 @@ defmodule StoneBank.Accounts.AccountsTest do
 
       assert {:error, :not_found} =
                Accounts.get_account_by_number_and_password(account.number, "123")
+    end
+  end
+
+  describe "load_next_transaction" do
+    test "returns a transaction" do
+      transaction =
+        fixture!(:transaction, processed_at: nil, inserted_at: ~N[2019-11-01 12:45:17])
+
+      fixture!(:transaction,
+        processed_at: ~N[2019-11-01 10:45:17],
+        inserted_at: ~N[2019-11-01 10:45:17]
+      )
+
+      fixture!(:transaction, processed_at: nil, inserted_at: ~N[2019-11-02 12:45:17])
+
+      assert %Transaction{} = transaction_result = Accounts.load_next_transaction()
+      assert transaction_result.id == transaction.id
+    end
+
+    test "returns nil" do
+      fixture!(:transaction, processed_at: ~N[2019-11-28 12:45:17])
+
+      assert nil == Accounts.load_next_transaction()
+    end
+  end
+
+  describe "process_transaction/1" do
+    test "with gift transaction returns ok" do
+      expect(GiftProcessorMock, :call, fn %Transaction{}, GiftNotificatorMock -> nil end)
+
+      transaction = fixture!(:transaction, action: "gift")
+
+      assert {:ok, nil} = Accounts.process_transaction(transaction)
+    end
+
+    test "with withdrawal transaction returns ok" do
+      expect(WithdrawalProcessorMock, :call, fn %Transaction{}, WithdrawalNotificatorMock ->
+        nil
+      end)
+
+      transaction = fixture!(:transaction, action: "withdrawal")
+
+      assert {:ok, nil} = Accounts.process_transaction(transaction)
+    end
+
+    test "with transference transaction returns ok" do
+      expect(TransferenceProcessorMock, :call, fn %Transaction{}, TransferenceNotificatorMock ->
+        nil
+      end)
+
+      transaction = fixture!(:transaction, action: "transference")
+
+      assert {:ok, nil} = Accounts.process_transaction(transaction)
     end
   end
 end

@@ -1,19 +1,29 @@
+alias StoneBank.Accounts.TransactionNotificators
+alias StoneBank.Accounts.TransactionFactories
+alias StoneBank.Accounts.TransactionProcessors
+
 Mox.defmock(StoneBank.TimeMock, for: StoneBank.Time)
 Mox.defmock(StoneBank.AccountsMock, for: StoneBank.Accounts)
 Mox.defmock(StoneBank.Accounts.AccountCallbacksMock, for: StoneBank.Accounts.AccountCallbacks)
+Mox.defmock(TransactionProcessors.GiftProcessorMock, for: TransactionProcessors.Behaviour)
+Mox.defmock(TransactionProcessors.WithdrawalProcessorMock, for: TransactionProcessors.Behaviour)
+Mox.defmock(TransactionProcessors.TransferenceProcessorMock, for: TransactionProcessors.Behaviour)
+Mox.defmock(TransactionNotificators.NotificatorMock, for: TransactionNotificators.Behaviour)
+Mox.defmock(TransactionFactories.GiftFactoryMock, for: TransactionFactories.GiftFactory)
+Mox.defmock(TransactionNotificators.GiftNotificatorMock, for: TransactionNotificators.Behaviour)
 
-Mox.defmock(StoneBank.Accounts.TransactionNotificators.NotificatorMock,
-  for: StoneBank.Accounts.TransactionNotificators.Behaviour
+Mox.defmock(TransactionFactories.TransferenceFactoryMock,
+  for: TransactionFactories.TransferenceFactory
 )
 
-Mox.defmock(StoneBank.Accounts.TransactionFactories.GiftFactoryMock,
-  for: StoneBank.Accounts.TransactionFactories.GiftFactory
+Mox.defmock(TransactionFactories.WithdrawalFactoryMock,
+  for: TransactionFactories.WithdrawalFactory
 )
 
-Mox.defmock(StoneBank.Accounts.TransactionFactories.TransferenceFactoryMock,
-  for: StoneBank.Accounts.TransactionFactories.TransferenceFactory
+Mox.defmock(TransactionNotificators.WithdrawalNotificatorMock,
+  for: TransactionNotificators.Behaviour
 )
 
-Mox.defmock(StoneBank.Accounts.TransactionFactories.WithdrawalFactoryMock,
-  for: StoneBank.Accounts.TransactionFactories.WithdrawalFactory
+Mox.defmock(TransactionNotificators.TransferenceNotificatorMock,
+  for: TransactionNotificators.Behaviour
 )

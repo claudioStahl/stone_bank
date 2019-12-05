@@ -40,7 +40,7 @@ config :stone_bank,
 # Configures the endpoint
 config :stone_bank, StoneBankWeb.Endpoint,
   url: [host: "localhost"],
-  http: [port: 4000],
+  http: [port: System.get_env("PORT") || "4000"],
   secret_key_base: "J4gZROHg7ryJgCJAtMqR6GwvmIuUDoICmB1q+znzcu2alExmDIuI9VOjF7EZDz8J",
   render_errors: [view: StoneBankWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: StoneBank.PubSub, adapter: Phoenix.PubSub.PG2]

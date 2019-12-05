@@ -10,7 +10,7 @@ use Mix.Config
 # which you should run after static files are built and
 # before starting your production server.
 config :stone_bank, StoneBankWeb.Endpoint,
-  load_from_system_env: false,
+  load_from_system_env: true,
   check_origin: false,
   server: true,
   root: "."
@@ -51,3 +51,7 @@ config :logger, level: :info
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
+
+if System.get_env("WITHOUT_RELEASE") == "true" do
+  import_config "releases.exs"
+end

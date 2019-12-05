@@ -19,6 +19,13 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
+url_scheme = System.get_env("URL_SCHEME") || "http"
+url_host = System.get_env("URL_HOST") || "localhost"
+url_port = System.get_env("URL_PORT") || "80"
+force_ssl = if url_scheme == "https", do: [rewrite_on: [:x_forwarded_proto]], else: []
+
 config :stone_bank, StoneBankWeb.Endpoint,
-  http: [:inet6, port: String.to_integer(System.get_env("PORT") || "4000")],
+  load_from_system_env: true,
+  url: [scheme: url_scheme, host: url_host, port: url_port],
+  force_ssl: force_ssl,
   secret_key_base: secret_key_base

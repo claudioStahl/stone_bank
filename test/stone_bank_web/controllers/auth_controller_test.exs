@@ -36,7 +36,7 @@ defmodule StoneBankWeb.AuthControllerTest do
     end
 
     test "renders errors when data is empty", %{conn: conn} do
-      conn = post(conn, Routes.account_path(conn, :create), %{})
+      conn = post(conn, Routes.auth_path(conn, :create), %{})
       assert json_response(conn, 400)["errors"] != %{}
     end
   end

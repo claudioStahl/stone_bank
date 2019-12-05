@@ -13,7 +13,9 @@ defmodule StoneBank.Fixtures.Accounts do
       number: Keyword.get(params, :number, nil),
       password: Keyword.get(params, :password, @password),
       password_hash: Keyword.get(params, :password_hash, Argon2.hash_pwd_salt(@password)),
-      total: Keyword.get(params, :total, 1_000)
+      total: Keyword.get(params, :total, 1_000),
+      inserted_at: Keyword.get(params, :inserted_at, ~N[2019-11-20 12:45:17]),
+      updated_at: Keyword.get(params, :updated_at, ~N[2019-11-20 12:45:17])
     }
   end
 
@@ -26,7 +28,9 @@ defmodule StoneBank.Fixtures.Accounts do
       kind: Keyword.get(params, :kind, "inbound"),
       processed_at: Keyword.get(params, :processed_at, ~N[2019-11-28 12:45:17]),
       value: Keyword.get(params, :value, 10_000),
-      account_id: Keyword.get(params, :account_id, UUID.generate())
+      account_id: Keyword.get(params, :account_id, UUID.generate()),
+      inserted_at: Keyword.get(params, :inserted_at, ~N[2019-11-20 12:45:17]),
+      updated_at: Keyword.get(params, :updated_at, ~N[2019-11-20 12:45:17])
     }
   end
 

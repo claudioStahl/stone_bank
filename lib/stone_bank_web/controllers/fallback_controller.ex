@@ -20,6 +20,20 @@ defmodule StoneBankWeb.FallbackController do
     |> render(:"404")
   end
 
+  def call(conn, {:unprocessable_entity, message}) do
+    conn
+    |> put_status(:unprocessable_entity)
+    |> put_view(StoneBankWeb.ErrorView)
+    |> render("message.json", message: message)
+  end
+
+  def call(conn, {:bad_request, message}) do
+    conn
+    |> put_status(:bad_request)
+    |> put_view(StoneBankWeb.ErrorView)
+    |> render("message.json", message: message)
+  end
+
   def call(conn, {:unauthorized, message}) do
     conn
     |> put_status(:unauthorized)

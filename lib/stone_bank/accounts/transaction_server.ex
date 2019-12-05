@@ -10,7 +10,6 @@ defmodule StoneBank.Accounts.TransactionServer do
 
   alias Postgrex.Notifications
 
-  @pg_config Application.get_env(:stone_bank, StoneBank.Repo)
   @channel "new_transaction"
   @accounts Application.get_env(:stone_bank, :accounts_module)
 
@@ -27,7 +26,7 @@ defmodule StoneBank.Accounts.TransactionServer do
 
     send_poll()
 
-    {:ok, pid} = Notifications.start_link(@pg_config)
+    {:ok, pid} = Notifications.start_link(StoneBank.Repo.config())
     {:ok, _ref} = Notifications.listen(pid, @channel)
     {:ok, 0}
   end

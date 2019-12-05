@@ -23,4 +23,10 @@ defmodule StoneBankWeb.Router do
     resources "/withdrawals", WithdrawalController, only: [:create]
     resources "/transferences", TransferenceController, only: [:create]
   end
+
+  scope "/api/v1/backoffice", StoneBankWeb do
+    pipe_through :api
+
+    resources "/reporters/general", GeneralReporterController, only: [:index]
+  end
 end

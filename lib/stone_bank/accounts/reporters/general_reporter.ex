@@ -9,6 +9,9 @@ defmodule StoneBank.Accounts.Reporters.GeneralReporter do
   @intervals ["year", "month", "day"]
   @default_start ~N[1970-01-01 00:00:00]
 
+  @callback call(String.t(), String.t()) ::
+              {:ok, Map.t()} | {:error, :invalid_format}
+
   def call(start, finish) do
     with {:ok, start} <- parse_date(start),
          {:ok, finish} <- parse_date(finish) do

@@ -7,6 +7,7 @@ config :stone_bank,
   ],
   time_module: StoneBank.TimeMock,
   accounts_module: StoneBank.AccountsMock,
+  general_reporter_module: StoneBank.Accounts.Reporters.GeneralReporterMock,
   gift_transaction_factory: StoneBank.Accounts.TransactionFactories.GiftFactoryMock,
   transference_transaction_factory:
     StoneBank.Accounts.TransactionFactories.TransferenceFactoryMock,

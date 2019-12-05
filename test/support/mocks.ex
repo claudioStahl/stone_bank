@@ -1,9 +1,11 @@
 alias StoneBank.Accounts.TransactionNotificators
 alias StoneBank.Accounts.TransactionFactories
 alias StoneBank.Accounts.TransactionProcessors
+alias StoneBank.Accounts.Reporters
 
 Mox.defmock(StoneBank.TimeMock, for: StoneBank.Time)
 Mox.defmock(StoneBank.AccountsMock, for: StoneBank.Accounts)
+Mox.defmock(Reporters.GeneralReporterMock, for: Reporters.GeneralReporter)
 Mox.defmock(StoneBank.Accounts.AccountCallbacksMock, for: StoneBank.Accounts.AccountCallbacks)
 Mox.defmock(TransactionProcessors.GiftProcessorMock, for: TransactionProcessors.Behaviour)
 Mox.defmock(TransactionProcessors.WithdrawalProcessorMock, for: TransactionProcessors.Behaviour)

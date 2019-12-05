@@ -14,4 +14,8 @@ defmodule StoneBankWeb.AccountController do
       |> render("show.json", account: account)
     end
   end
+
+  def create(_, _) do
+    {:bad_request, gettext("Fill all attributes")}
+  end
 end

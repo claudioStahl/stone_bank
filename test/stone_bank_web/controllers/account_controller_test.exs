@@ -42,5 +42,10 @@ defmodule StoneBankWeb.AccountControllerTest do
       conn = post(conn, Routes.account_path(conn, :create), @invalid_attrs)
       assert json_response(conn, 422)["errors"] != %{}
     end
+
+    test "renders errors when data is empty", %{conn: conn} do
+      conn = post(conn, Routes.account_path(conn, :create), %{})
+      assert json_response(conn, 400)["errors"] != %{}
+    end
   end
 end

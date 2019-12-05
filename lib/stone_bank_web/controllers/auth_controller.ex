@@ -20,4 +20,8 @@ defmodule StoneBankWeb.AuthController do
       {:error, :not_found} -> {:unauthorized, gettext("Number or password invalids")}
     end
   end
+
+  def create(_, _) do
+    {:bad_request, gettext("Fill all attributes")}
+  end
 end

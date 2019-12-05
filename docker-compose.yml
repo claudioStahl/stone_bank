@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    command: ["./scripts/migrate-and-start.sh"]
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: "4000"
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/stone_bank_prod"
+      POOL_SIZE: "10"
+      SECRET_KEY_BASE: "EsLL8SOr/Ps7nn1LWJjEa/pwtxhiBMOLNDNz3UsgThiELINbvZh+ecz+Sk28VwbF"
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    networks:
+      - stone-bank-network
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "stone_bank_prod"
+    volumes:
+      - ./tmp/volumes/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - stone-bank-network
+
+networks:
+  stone-bank-network:
+    driver: bridge

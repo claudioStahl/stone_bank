@@ -78,27 +78,27 @@ defmodule StoneBank.Accounts.Reporters.GeneralReporterTest do
 
       assert %{
                days: [
-                 %{"date" => ~D[2017-12-09], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-09], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-12-08], "kind" => "gift", "value" => 600},
-                 %{"date" => ~D[2019-12-08], "kind" => "transference", "value" => 400},
-                 %{"date" => ~D[2019-12-09], "kind" => "gift", "value" => 700}
+                 %{"date" => ~D[2017-12-09], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-09], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-12-08], "action" => "gift", "value" => 600},
+                 %{"date" => ~D[2019-12-08], "action" => "transference", "value" => 400},
+                 %{"date" => ~D[2019-12-09], "action" => "gift", "value" => 700}
                ],
                months: [
-                 %{"date" => ~D[2017-12-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-12-01], "kind" => "gift", "value" => 1300},
-                 %{"date" => ~D[2019-12-01], "kind" => "transference", "value" => 400}
+                 %{"date" => ~D[2017-12-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-12-01], "action" => "gift", "value" => 1300},
+                 %{"date" => ~D[2019-12-01], "action" => "transference", "value" => 400}
                ],
                total: [
-                 %{"kind" => "gift", "value" => 2900},
-                 %{"kind" => "transference", "value" => 400}
+                 %{"action" => "gift", "value" => 2900},
+                 %{"action" => "transference", "value" => 400}
                ],
                years: [
-                 %{"date" => ~D[2017-01-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-01-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-01-01], "kind" => "gift", "value" => 1300},
-                 %{"date" => ~D[2019-01-01], "kind" => "transference", "value" => 400}
+                 %{"date" => ~D[2017-01-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-01-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-01-01], "action" => "gift", "value" => 1300},
+                 %{"date" => ~D[2019-01-01], "action" => "transference", "value" => 400}
                ]
              } == result
     end
@@ -112,31 +112,31 @@ defmodule StoneBank.Accounts.Reporters.GeneralReporterTest do
 
       assert %{
                days: [
-                 %{"date" => ~D[2017-12-09], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-09], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-12-08], "kind" => "gift", "value" => 600},
-                 %{"date" => ~D[2019-12-08], "kind" => "transference", "value" => 400},
-                 %{"date" => ~D[2019-12-09], "kind" => "gift", "value" => 700},
-                 %{"date" => ~D[2019-12-11], "kind" => "withdrawal", "value" => 500}
+                 %{"date" => ~D[2017-12-09], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-09], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-12-08], "action" => "gift", "value" => 600},
+                 %{"date" => ~D[2019-12-08], "action" => "transference", "value" => 400},
+                 %{"date" => ~D[2019-12-09], "action" => "gift", "value" => 700},
+                 %{"date" => ~D[2019-12-11], "action" => "withdrawal", "value" => 500}
                ],
                months: [
-                 %{"date" => ~D[2017-12-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-12-01], "kind" => "gift", "value" => 1300},
-                 %{"date" => ~D[2019-12-01], "kind" => "transference", "value" => 400},
-                 %{"date" => ~D[2019-12-01], "kind" => "withdrawal", "value" => 500}
+                 %{"date" => ~D[2017-12-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-12-01], "action" => "gift", "value" => 1300},
+                 %{"date" => ~D[2019-12-01], "action" => "transference", "value" => 400},
+                 %{"date" => ~D[2019-12-01], "action" => "withdrawal", "value" => 500}
                ],
                total: [
-                 %{"kind" => "gift", "value" => 2900},
-                 %{"kind" => "transference", "value" => 400},
-                 %{"kind" => "withdrawal", "value" => 500}
+                 %{"action" => "gift", "value" => 2900},
+                 %{"action" => "transference", "value" => 400},
+                 %{"action" => "withdrawal", "value" => 500}
                ],
                years: [
-                 %{"date" => ~D[2017-01-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-01-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-01-01], "kind" => "gift", "value" => 1300},
-                 %{"date" => ~D[2019-01-01], "kind" => "transference", "value" => 400},
-                 %{"date" => ~D[2019-01-01], "kind" => "withdrawal", "value" => 500}
+                 %{"date" => ~D[2017-01-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-01-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-01-01], "action" => "gift", "value" => 1300},
+                 %{"date" => ~D[2019-01-01], "action" => "transference", "value" => 400},
+                 %{"date" => ~D[2019-01-01], "action" => "withdrawal", "value" => 500}
                ]
              } == result
     end
@@ -149,17 +149,17 @@ defmodule StoneBank.Accounts.Reporters.GeneralReporterTest do
 
       assert %{
                days: [
-                 %{"date" => ~D[2017-12-09], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-09], "kind" => "gift", "value" => 800}
+                 %{"date" => ~D[2017-12-09], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-09], "action" => "gift", "value" => 800}
                ],
                months: [
-                 %{"date" => ~D[2017-12-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-01], "kind" => "gift", "value" => 800}
+                 %{"date" => ~D[2017-12-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-01], "action" => "gift", "value" => 800}
                ],
-               total: [%{"kind" => "gift", "value" => 1600}],
+               total: [%{"action" => "gift", "value" => 1600}],
                years: [
-                 %{"date" => ~D[2017-01-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-01-01], "kind" => "gift", "value" => 800}
+                 %{"date" => ~D[2017-01-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-01-01], "action" => "gift", "value" => 800}
                ]
              } == result
     end
@@ -173,31 +173,31 @@ defmodule StoneBank.Accounts.Reporters.GeneralReporterTest do
 
       assert %{
                days: [
-                 %{"date" => ~D[2017-12-09], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-09], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-12-08], "kind" => "gift", "value" => 600},
-                 %{"date" => ~D[2019-12-08], "kind" => "transference", "value" => 400},
-                 %{"date" => ~D[2019-12-09], "kind" => "gift", "value" => 700},
-                 %{"date" => ~D[2019-12-11], "kind" => "withdrawal", "value" => 500}
+                 %{"date" => ~D[2017-12-09], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-09], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-12-08], "action" => "gift", "value" => 600},
+                 %{"date" => ~D[2019-12-08], "action" => "transference", "value" => 400},
+                 %{"date" => ~D[2019-12-09], "action" => "gift", "value" => 700},
+                 %{"date" => ~D[2019-12-11], "action" => "withdrawal", "value" => 500}
                ],
                months: [
-                 %{"date" => ~D[2017-12-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-12-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-12-01], "kind" => "gift", "value" => 1300},
-                 %{"date" => ~D[2019-12-01], "kind" => "transference", "value" => 400},
-                 %{"date" => ~D[2019-12-01], "kind" => "withdrawal", "value" => 500}
+                 %{"date" => ~D[2017-12-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-12-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-12-01], "action" => "gift", "value" => 1300},
+                 %{"date" => ~D[2019-12-01], "action" => "transference", "value" => 400},
+                 %{"date" => ~D[2019-12-01], "action" => "withdrawal", "value" => 500}
                ],
                total: [
-                 %{"kind" => "gift", "value" => 2900},
-                 %{"kind" => "transference", "value" => 400},
-                 %{"kind" => "withdrawal", "value" => 500}
+                 %{"action" => "gift", "value" => 2900},
+                 %{"action" => "transference", "value" => 400},
+                 %{"action" => "withdrawal", "value" => 500}
                ],
                years: [
-                 %{"date" => ~D[2017-01-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2018-01-01], "kind" => "gift", "value" => 800},
-                 %{"date" => ~D[2019-01-01], "kind" => "gift", "value" => 1300},
-                 %{"date" => ~D[2019-01-01], "kind" => "transference", "value" => 400},
-                 %{"date" => ~D[2019-01-01], "kind" => "withdrawal", "value" => 500}
+                 %{"date" => ~D[2017-01-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2018-01-01], "action" => "gift", "value" => 800},
+                 %{"date" => ~D[2019-01-01], "action" => "gift", "value" => 1300},
+                 %{"date" => ~D[2019-01-01], "action" => "transference", "value" => 400},
+                 %{"date" => ~D[2019-01-01], "action" => "withdrawal", "value" => 500}
                ]
              } == result
     end

@@ -185,27 +185,27 @@ RESPONSE
     "days": [
       {
         "date": "2019-12-05",
-        "kind": "gift",
+        "action": "gift",
         "value": 200000
       }
     ],
     "months": [
       {
         "date": "2019-12-01",
-        "kind": "gift",
+        "action": "gift",
         "value": 300000
       }
     ],
     "total": [
       {
-        "kind": "gift",
+        "action": "gift",
         "value": 300000
       }
     ],
     "years": [
       {
         "date": "2019-01-01",
-        "kind": "gift",
+        "action": "gift",
         "value": 300000
       }
     ]

@@ -49,7 +49,7 @@ defmodule StoneBank.Accounts.Reporters.GeneralReporter do
     |> order_by(fragment("date"))
     |> order_by([t], t.action)
     |> Repo.all()
-    |> build_objects(["date", "kind", "value"])
+    |> build_objects(["date", "action", "value"])
   end
 
   defp query_total(start, finish) do
@@ -61,7 +61,7 @@ defmodule StoneBank.Accounts.Reporters.GeneralReporter do
     |> where_processed_at_range(start, finish)
     |> order_by([t], t.action)
     |> Repo.all()
-    |> build_objects(["kind", "value"])
+    |> build_objects(["action", "value"])
   end
 
   defp where_processed_at_range(query, start, finish) do

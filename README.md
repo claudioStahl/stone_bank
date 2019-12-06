@@ -26,6 +26,12 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 - Run `mix test`
 
+## To start with Docker:
+
+- Run `docker-compose up`
+
+This will simulate a production env.
+
 ## To deploy:
 
 Fill env vars:
